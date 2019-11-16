@@ -22,3 +22,11 @@ with open(savePath2, 'wb') as saveFile2:
     saveFile2.write(f2)
 
 print("다운로드 완료!")
+
+"""
+urlretrieve:
+저장 -> open('r') -> 변수에 할당 -> 파싱 -> 저장
+
+urlopen:
+변수 할당 -> 파싱 -> 저장(db...)
+"""
