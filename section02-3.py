@@ -1,6 +1,7 @@
 # Section02-3
 # 파이썬 크롤링 기초
 # lmxl 사용 기초 스크랩(1)
+# pip install lxml, requests, cssselect
 
 import sys
 import io
@@ -35,8 +36,11 @@ def scrape_news_list_page(response):
     # 태크 정보 문자열 저장
     root = lxml.html.fromstring(response.content)
 
-    for a in root.cssselect(""):
-        pass
+    for a in root.cssselect(".api_list .api_item a.api_link"):
+        # 링크
+        url = a.get('href')
+        urls.append(url)
+    return urls
 
 # 스크랩핑 시작
 if __name__ == "__main__":
