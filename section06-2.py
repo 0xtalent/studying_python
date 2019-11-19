@@ -48,3 +48,35 @@ WebDriverWait(browser, 3).until(EC.presence_of_element_located((By.XPATH,'//*[@i
 # # implicitly wait
 # time.sleep(2)
 # browser.find_element_by_xpath('//*[@id="dlMaker_simple"]/dd/div[2]/button[1]').click()
+
+WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.XPATH,'//*[@id="selectMaker_simple_priceCompare_A"]/li[14]/label'))).click()
+
+time.sleep(2)
+
+# bs4 초기화
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+# # 소스코드 정리
+# print(soup.prettify())
+
+# 메인 상품 리스트 선택
+pro_list = soup.select('div.main_prodlist.main_prodlist_list > ul > li')
+
+# 상품 리스트 확인
+
+print(pro_list)
+
+# 필요 정보 추출하기
+for v in pro_list:
+    # 임시 출력
+    # print(v)
+
+    if not v.find('div', class_="ad_header"):
+
+        # 없는거 상품명, 이미지, 가격 출력해주자
+        print(v.select('p.prod_name > a')[0].text.strip())
+        print(v.select('a.thumb_link > img')[0]['data-original'])
+        print(v.select('p.price_sect > a')[0].text.strip())
+
+# 브라우저 종료해주기
+browser.close()
