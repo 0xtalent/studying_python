@@ -51,3 +51,12 @@ element.send_keys('펭수')
 
 # 검색: 엔터 쳐주는 작업(Form Submit)
 element.submit()
+
+# 스크린샷 저장해보기1
+browser.save_screenshot("c:/website_ch1.jpg")
+
+# 스크린샷 저장해보기2
+browser.get_screenshot_as_file("c:/website_ch2.jpg")
+
+# 브라우저 종료하기(모두 실행되면 끄기)
+browser.quit()
