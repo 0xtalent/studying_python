@@ -8,4 +8,17 @@ class TestSpider(scrapy.Spider):
     start_urls = ['https://blog.scrapinghub.com/']
 
     def parse(self, response):
-        pass
+        """
+        :param : response
+        :return : Title Text
+        """
+
+        # 2가지 방법이 있어요(CSS Selector, XPath)
+        # getall() <-> get(), extract <-> extract_first()
+
+        # 예제1(CSS Selector로 해보기)
+        for text in response.css('div.post-header h2 a::text').getall():
+            # return Type : Request, BaseItem, Dictionary, None
+            yield {
+                'title': text
+            }
